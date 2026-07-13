@@ -1,4 +1,4 @@
-# Betsi Eco Hub — AI-Powered Knowledge Platform
+# Azure RAG Platform — AI-Powered Knowledge Assistant
 
 **Live Demo:** Coming soon — see `/docs/screenshots` for preview  
 **Stack:** TypeScript, Node.js, Fastify, Azure OpenAI, Azure AI Search, Bicep, Azure Container Apps, React  
@@ -8,7 +8,7 @@
 
 ## Why this project matters
 
-Betsi Eco Hub helps organizations turn internal documents into secure, AI-searchable knowledge. It demonstrates how retrieval-augmented generation can deliver accurate, cited answers from company data.
+This platform helps organizations turn internal documents into secure, AI-searchable knowledge. It demonstrates how retrieval-augmented generation can deliver accurate, cited answers from company data.
 
 This repository serves as:
 1. **Portfolio project** — Full-stack Azure AI engineering with IaC and microservices
@@ -39,13 +39,15 @@ Production-ready AI chat experience over private business content. Users ask nat
 | **Security** | Azure AD, Managed Identity, Key Vault |
 
 ## Project structure
-betsi-eco-hub/
+azure-rag-platform/
 ├── packages/webapp # React frontend + auth flow
 ├── packages/search # Fastify API: chat, RAG orchestration
 ├── packages/indexer # Document processing + embedding pipeline
 ├── packages/chat-component # Reusable chat UI library
 ├── infra/ # Bicep templates: OpenAI, Search, Container Apps
 └── azure.yaml # azd hooks: build, provision, deploy
+
+javascript
 
 ## Getting started
 
@@ -126,4 +128,5 @@ Azure AD integration for enterprise authentication
 Contact
 Built by Molla Negash — Backend Engineer specializing in Azure AI + Cloud Architecture
 GitHub: 
+Location: Austin, Texas
 Open to: Full-time roles, consulting, collaboration
