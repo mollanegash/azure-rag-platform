@@ -1,128 +1,253 @@
+
 # Azure RAG Platform — AI-Powered Knowledge Assistant
 
 **Live Demo:** Coming soon — see `/docs/screenshots` for preview  
-**Stack:** TypeScript, Node.js, Fastify, Azure OpenAI, Azure AI Search, Bicep, Azure Container Apps, React  
-**Status:** Production-ready MVP deployed via Infrastructure-as-Code
+**Stack:** TypeScript, Node.js, Fastify, React, Azure OpenAI, Azure AI Search, Bicep, Azure Container Apps  
+**Status:** Production-style MVP deployed using Infrastructure-as-Code
 
-> Forked from Azure-Samples/azure-search-openai-javascript and extensively customized with enterprise features, security hardening, and multi-tenant architecture.
+## Overview
+
+Azure RAG Platform is an AI-powered knowledge assistant that enables organizations to securely search, analyze, and interact with private business documents using Retrieval-Augmented Generation (RAG).
+
+The platform combines Azure OpenAI, Azure AI Search, vector embeddings, secure authentication, and cloud-native microservices architecture to deliver accurate, citation-backed responses from enterprise data.
+
+This project demonstrates modern AI application engineering, including:
+
+- Full-stack cloud-native development
+- RAG pipeline architecture
+- Secure enterprise document processing
+- Microservices design
+- Infrastructure-as-Code deployment
+- AI-enabled knowledge management workflows
+
 
 ## Why this project matters
 
-This platform helps organizations turn internal documents into secure, AI-searchable knowledge. It demonstrates how retrieval-augmented generation can deliver accurate, cited answers from company data.
+Organizations have large amounts of internal knowledge stored across documents, policies, and technical resources. This platform demonstrates how AI can transform those documents into a secure, searchable knowledge system.
 
 This repository serves as:
-1. **Portfolio project** — Full-stack Azure AI engineering with IaC and microservices
-2. **Startup MVP** — Foundation for a client-facing platform for knowledge management and consulting workflows
 
-## What this app does today
+1. **Portfolio project** — End-to-end Azure AI engineering with frontend, backend, AI services, and infrastructure automation.
+2. **Startup MVP foundation** — Designed as a scalable foundation for enterprise knowledge management and consulting workflows.
 
-Production-ready AI chat experience over private business content. Users ask natural-language questions and get grounded answers with citations from indexed documents.
 
-### Current Features
-- **RAG Pipeline** — Azure OpenAI + Azure AI Search with citation-backed responses
-- **JWT Authentication + Azure AD Integration** — Role-based access and SSO support
-- **Secure Document Upload** — Content indexing pipeline with metadata support
-- **Microservices Architecture** — Separated `search`, `indexer`, and `webapp` services
-- **Infrastructure-as-Code** — One-command Azure provisioning via Bicep + `azd up`
-- **Client Dashboard** — Saved conversations, document management, usage analytics
-- **Admin Controls** — Content curation, user management, audit logging hooks
+## Current Capabilities
 
-## Tech stack
+### AI-Powered RAG Pipeline
+- Azure OpenAI integration for grounded responses
+- Azure AI Search for document retrieval
+- Vector embedding-based semantic search
+- Citation-backed answers from indexed content
 
-| **Layer** | **Technology** |
-| --- | --- |
-| **Frontend** | React 18, Vite, TypeScript |
-| **Backend** | Node.js 18, Fastify, TypeScript |
-| **AI/RAG** | Azure OpenAI GPT-4, Azure AI Search, Vector Embeddings |
-| **Infrastructure** | Bicep, Azure Developer CLI, Docker |
-| **Deployment** | Azure Container Apps, Azure Static Web Apps |
-| **Security** | Azure AD, Managed Identity, Key Vault |
 
-## Project structure
+### Secure Enterprise Architecture
+- JWT authentication
+- Azure AD integration
+- Role-based access design
+- Managed Identity support
+- Key Vault integration
+- Audit logging foundations
+
+
+### Microservices Architecture
+
+Services are separated by responsibility:
+
+- `webapp` — React frontend application and authentication flow
+- `search` — Fastify API handling chat requests and RAG orchestration
+- `indexer` — Document processing and embedding pipeline
+- `chat-component` — Reusable AI chat interface library
+
+
+### Infrastructure Automation
+
+Cloud resources are provisioned using:
+
+- Azure Developer CLI (`azd`)
+- Bicep Infrastructure-as-Code
+- Azure Container Apps
+- Azure Static Web Apps
+- Docker containerization
+
+
+# Technology Stack
+
+| Layer | Technology |
+|---|---|
+| Frontend | React 18, Vite, TypeScript |
+| Backend | Node.js 18, Fastify, TypeScript |
+| AI Platform | Azure OpenAI GPT-4, Azure AI Search, Vector Embeddings |
+| Authentication | Azure AD, JWT, Managed Identity |
+| Infrastructure | Bicep, Azure Developer CLI, Docker |
+| Deployment | Azure Container Apps, Azure Static Web Apps |
+| Security | Key Vault, Role-Based Access, Secure API Design |
+
+
+# Architecture Overview
+
+Request flow:
+
+```
+
+User
+↓
+React Static Web App
+↓
+Container Apps API
+↓
+Fastify RAG Service
+↓
+Azure AI Search
+↓
+Azure OpenAI
+↓
+Grounded Response with Citations
+
+```
+
+The service separation enables independent scaling, clear ownership boundaries, and future SaaS evolution.
+
+
+# Project Structure
+
+```
+
 azure-rag-platform/
-├── packages/webapp # React frontend + auth flow
-├── packages/search # Fastify API: chat, RAG orchestration
-├── packages/indexer # Document processing + embedding pipeline
-├── packages/chat-component # Reusable chat UI library
-├── infra/ # Bicep templates: OpenAI, Search, Container Apps
-└── azure.yaml # azd hooks: build, provision, deploy
 
-javascript
+├── packages/
+│   ├── webapp              # React frontend + authentication flow
+│   ├── search              # Fastify API + RAG orchestration
+│   ├── indexer             # Document processing + embedding pipeline
+│   └── chat-component      # Reusable AI chat component
+│
+├── infra/                  # Bicep templates and Azure resources
+├── scripts/                # Automation scripts
+├── tests/                  # Application tests
+└── azure.yaml              # Azure Developer CLI deployment configuration
 
-## Getting started
+````
 
-### Prerequisites
-- Node.js 18+ and npm 9+
+
+# Getting Started
+
+## Prerequisites
+
+- Node.js 18+
+- npm 9+
 - Azure subscription with Azure OpenAI access
-- Azure Developer CLI `azd` installed
+- Azure Developer CLI (`azd`)
 
-### Run locally
+
+## Local Deployment
+
 ```bash
 npm install
+
 azd auth login
+
 azd up
-Then open: http://localhost:5173
+````
 
-azd up provisions Azure OpenAI, AI Search, and Container Apps, then deploys all services. First run takes 5-8 minutes.
+The deployment process provisions:
 
-Architecture overview
-Request flow: User → Static Web App → Container Apps API → Azure AI Search retrieves docs → Azure OpenAI generates grounded answer → Response with citations
+* Azure OpenAI
+* Azure AI Search
+* Azure Container Apps
+* Supporting Azure infrastructure
 
-The microservices separation enables independent scaling and clear service boundaries for future SaaS evolution.
+After deployment:
 
-Roadmap
-Phase 1 — Shipped ✅
-RAG chat with citations
-Document upload + indexing
-Azure AD authentication
-Bicep IaC deployment
-Phase 2 — In Progress
-Multi-client data isolation
-Usage analytics dashboard
-Enhanced admin controls
-Phase 3 — Scale
-Custom workflow builder for business teams
-Advanced analytics and reporting
-Integration APIs for enterprise tools
-Why this is a strong portfolio project
-This repo demonstrates:
+```
+http://localhost:5173
+```
 
-Azure AI Engineering — End-to-end RAG: indexing, embeddings, vector search, grounded generation
-Cloud-Native IaC — Zero-click deploys with Bicep and Azure Developer CLI
-Security Practices — Managed Identity, Key Vault, SECURITY.md, audit logging
-Microservices Design — Production service separation and API design
-Product Thinking — Built as MVP with clear roadmap and real user problems
-Deployment
-Azure: azd up — provisions + deploys everything
-Local dev: npm run dev — uses Azure services via environment variables
+# Roadmap
 
-For detailed Azure setup, see /infra/README.md.
+## Phase 1 — Completed ✅
 
-Troubleshooting
-Issue
+* RAG chat with citations
+* Document upload and indexing
+* Azure AD authentication
+* Bicep infrastructure deployment
 
-Fix
+## Phase 2 — In Progress
 
-401 Principal does not have access
+* Multi-tenant data isolation
+* Usage analytics dashboard
+* Enhanced administration controls
 
-Run azd auth login or remove AZURE_CLIENT_ID from .env
+## Phase 3 — Future
 
-404 after azd up
+* Custom workflow builder
+* Enterprise integrations
+* Advanced analytics platform
 
-Wait 10 min for Container Apps cold start, then azd deploy
+# Engineering Highlights
 
-Region not enabled for OpenAI
+This project demonstrates:
 
-Pick East US or Sweden Central during azd up prompts
+### Azure AI Engineering
 
-Quota exceeded
+* End-to-end RAG architecture
+* Document ingestion pipelines
+* Embeddings and semantic search
+* LLM integration patterns
 
-Delete old resource groups: az group delete --name <rg-name>
+### Cloud-Native Engineering
 
-Security
-See SECURITY.md for vulnerability reporting. Key practices:
+* Infrastructure-as-Code
+* Containerized deployment
+* Microservices architecture
+* Automated provisioning
 
-No secrets in code — all via Managed Identity + Key Vault
-Audit logging hooks in API calls
-Azure AD integration for enterprise authentication
+### Security Engineering
+
+* Identity-based authentication
+* Managed Identity
+* Secure secret management
+* Enterprise access control patterns
+
+### Product Engineering
+
+* Built as a complete MVP
+* Designed with scalability in mind
+* Focused on real enterprise knowledge-management problems
+
+# Deployment
+
+Azure deployment:
+
+```bash
+azd up
+```
+
+Local development:
+
+```bash
+npm run dev
+```
+
+# Security
+
+Security practices include:
+
+* No secrets committed to source control
+* Managed Identity authentication
+* Key Vault-based secret management
+* Secure API communication
+* Audit logging foundations
+
+For vulnerability reporting, see:
+
+`SECURITY.md`
+
+# Acknowledgment
+
+This project was inspired by Microsoft's Azure RAG reference implementation:
+
+`Azure-Samples/azure-search-openai-javascript`
+
+The original concept was significantly extended with custom architecture, security improvements, microservice separation, and enterprise-focused features.
+
+```
 
