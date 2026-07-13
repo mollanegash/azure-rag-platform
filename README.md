@@ -125,8 +125,4 @@ See SECURITY.md for vulnerability reporting. Key practices:
 No secrets in code — all via Managed Identity + Key Vault
 Audit logging hooks in API calls
 Azure AD integration for enterprise authentication
-Contact
-Built by Molla Negash — Backend Engineer specializing in Azure AI + Cloud Architecture
-GitHub: 
-Location: Austin, Texas
-Open to: Full-time roles, consulting, collaboration
+
