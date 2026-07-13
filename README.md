@@ -19,7 +19,7 @@ This repository serves as:
 Production-ready AI chat experience over private business content. Users ask natural-language questions and get grounded answers with citations from indexed documents.
 
 ### Current Features
-- **RAG Pipeline** — Azure AI Search + Azure OpenAI with citation-backed responses
+- **RAG Pipeline** — Azure OpenAI + Azure AI Search with citation-backed responses
 - **JWT Authentication + Azure AD Integration** — Role-based access and SSO support
 - **Secure Document Upload** — Content indexing pipeline with metadata support
 - **Microservices Architecture** — Separated `search`, `indexer`, and `webapp` services
@@ -47,6 +47,7 @@ betsi-eco-hub/
 ├── infra/ # Bicep templates: OpenAI, Search, Container Apps
 └── azure.yaml # azd hooks: build, provision, deploy
 
+javascript
 
 ## Getting started
 
@@ -63,6 +64,7 @@ azd up
 Then open: http://localhost:5173
 
 azd up provisions Azure OpenAI, AI Search, and Container Apps, then deploys all services. First run takes 5-8 minutes.
+
 Architecture overview
 Request flow: User → Static Web App → Container Apps API → Azure AI Search retrieves docs → Azure OpenAI generates grounded answer → Response with citations
 
@@ -127,5 +129,3 @@ Contact
 Built by Molla Negash — Backend Engineer specializing in Azure AI + Cloud Architecture
 GitHub: 
 Open to: Full-time roles, consulting, collaboration
-
-Note: Demo documents use LLM-generated content for illustration only.
