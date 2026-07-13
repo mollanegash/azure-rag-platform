@@ -47,8 +47,6 @@ betsi-eco-hub/
 ├── infra/ # Bicep templates: OpenAI, Search, Container Apps
 └── azure.yaml # azd hooks: build, provision, deploy
 
-javascript
-
 ## Getting started
 
 ### Prerequisites
